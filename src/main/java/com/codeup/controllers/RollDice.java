@@ -21,8 +21,8 @@ public class RollDice {
         model.addAttribute("n", n);
 
         boolean match = (n == randomNumber);
-
         model.addAttribute("match", match);
+
         return "roll-dice";
 
     }
