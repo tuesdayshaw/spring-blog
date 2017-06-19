@@ -15,9 +15,7 @@ public class PostsController {
 
     @GetMapping("/posts")
     @ResponseBody
-    public String viewAll() {
-        return "posts index page";
-    }
+    public String viewAll() { return "posts index page"; }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
