@@ -15,26 +15,26 @@ public class PostsController {
 
     @GetMapping("/posts")
     @ResponseBody
-    public String postsIndex() {
-        return "/posts";
+    public String viewAll() {
+        return "posts index page";
     }
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String postsId(@PathVariable int id) {
-        return "/posts/" + id;
+    public String viewIndividualPost(@PathVariable long id) {
+        return "view an individual post with ID:" + id;
     }
 
     @GetMapping("/posts/create")
     @ResponseBody
-    public String postsCreateView() {
-        return "/posts/create";
+    public String showPostForm() {
+        return "view the form for creating a post";
     }
 
     @PostMapping("/posts/create")
     @ResponseBody
-    public String postsCreate() {
-        return "/posts/create";
+    public String savePost() {
+        return "create a new form";
     }
 
 }
