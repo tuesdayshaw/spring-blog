@@ -39,7 +39,7 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String viewIndividualPost(@PathVariable Long id, Model model) {
 
-        Post post = new Post("Single Post", "some description");
+        Post post = postsDao.findOne(id);
 
         model.addAttribute("post", post);
         model.addAttribute("id", id);
