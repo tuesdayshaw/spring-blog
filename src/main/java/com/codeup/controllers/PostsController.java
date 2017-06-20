@@ -1,5 +1,6 @@
 package com.codeup.controllers;
 
+import com.codeup.models.Post;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import java.util.List;
 @Controller
 public class PostsController {
 
-    @GetMapping("/posts/index")
+    @GetMapping("/posts")
     public String viewAll(Model model) {
 
         List<Post> allPosts = new ArrayList<>();
