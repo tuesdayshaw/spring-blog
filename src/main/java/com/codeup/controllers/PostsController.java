@@ -20,17 +20,17 @@ import java.util.List;
 @Controller
 public class PostsController {
 
-    private PostSvc postsDao;
+    private PostSvc postSvc;
 
     @Autowired
-    public PostsController(PostSvc postsDao) {
-        this.postsDao = postsDao;
+    public PostsController(PostSvc postSvc) {
+        this.postSvc = postSvc;
     }
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
 
-        List<Post> allPosts = postsDao.findAll();
+        List<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
 
         return "posts/index";
@@ -39,7 +39,7 @@ public class PostsController {
     @GetMapping("/posts/{id}")
     public String viewIndividualPost(@PathVariable Long id, Model model) {
 
-        Post post = postsDao.findOne(id);
+        Post post = postSvc.findOne(id);
 
         model.addAttribute("post", post);
         model.addAttribute("id", id);
