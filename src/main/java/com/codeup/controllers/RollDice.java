@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class RollDice {
 
     @GetMapping("/roll-dice")
-    public String randomNumberGenerator() {
+    public String viewPage() {
         return "roll-dice";
     }
 
