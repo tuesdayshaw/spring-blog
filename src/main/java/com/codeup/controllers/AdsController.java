@@ -2,6 +2,7 @@ package com.codeup.controllers;
 
 import com.codeup.models.Ad;
 import com.codeup.svcs.AdSvc;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ public class AdsController {
 
     private AdSvc adsDao;
 
+    @Autowired
     public AdsController(AdSvc adsDao) {
         this.adsDao = adsDao;
     }

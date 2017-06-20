@@ -3,6 +3,7 @@ package com.codeup.svcs;
 import com.codeup.models.Ad;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,9 @@ public class AdSvc {
     }
 
     private void createAds() {
-        // create some ad objects and add them to the ads list
-        // with the save method
+        ads = new ArrayList<>();
+
+        save(new Ad("playstation for sale", "$1000 OBO"));
+        save(new Ad("xbox for sale", "$1000 OBO"));
     }
 }

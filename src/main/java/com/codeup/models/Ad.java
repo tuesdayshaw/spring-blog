@@ -17,6 +17,11 @@ public class Ad {
     public Ad() {
     }
 
+    public Ad(String title, String body) {
+        this.title = title;
+        this.body = body;
+    }
+
     public long getId() {
         return id;
     }
