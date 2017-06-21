@@ -1,6 +1,7 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
+import com.codeup.repositories.PostsRepository;
 import com.codeup.svcs.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,17 +18,17 @@ import java.util.List;
 @Controller
 public class PostsController {
 
-    private PostSvc postSvc;
+    private PostsRepository postSvc;
 
     @Autowired
-    public PostsController(PostSvc postSvc) {
+    public PostsController(PostsRepository postSvc) {
         this.postSvc = postSvc;
     }
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
 
-        List<Post> allPosts = postSvc.findAll();
+        Iterable<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
 
         return "posts/index";
