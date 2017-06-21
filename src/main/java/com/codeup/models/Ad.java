@@ -6,20 +6,20 @@ package com.codeup.models;
 public class Ad {
     private long id;
     private String title;
-    private String body;
+    private String description;
 
-    public Ad(long id, String title, String body) {
+    public Ad(long id, String title, String description) {
         this.id = id;
         this.title = title;
-        this.body = body;
+        this.description = description;
     }
 
     public Ad() {
     }
 
-    public Ad(String title, String body) {
+    public Ad(String title, String description) {
         this.title = title;
-        this.body = body;
+        this.description = description;
     }
 
     public long getId() {
@@ -38,11 +38,11 @@ public class Ad {
         this.title = title;
     }
 
-    public String getBody() {
-        return body;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
