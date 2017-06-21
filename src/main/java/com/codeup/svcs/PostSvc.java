@@ -24,13 +24,13 @@ public class PostSvc {
     }
 
     public Post save(Post post) {
-        post.setId(posts.size() + 1);
+        post.setId((long)posts.size() + 1);
         posts.add(post);
         return post;
     }
 
     public Post findOne(long id) {
-        return posts.get((int) (id - 1));
+        return posts.get((int)(id - 1));
     }
 
     private void createPosts() {

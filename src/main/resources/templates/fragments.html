@@ -5,11 +5,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <title th:text="${title}">Fragments</title>
+    <link href="/">
 </head>
 
 <body>
 
+<nav th:fragment="navbar">
+    <div id="container">
+        <div id="navbar">
+            <h1>Logo</h1>
+            <a>Link</a>
+            <a>Link</a>
+            <a>Link</a>
+        </div>
+    </div>
+</nav>
 
+
+<div th:fragment="scripts">
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+</div>
 
 </body>
 
