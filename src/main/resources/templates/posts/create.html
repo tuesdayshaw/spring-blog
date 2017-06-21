@@ -5,8 +5,14 @@
 </head>
 <body>
 
-<h1>Create Post</h1>
-<form th:include="fragments :: form" action="#" th:action="@{/posts/create}" method="post" th:object="${post}"></form>
+<div class="container">
+    <nav th:include="fragments :: navbar"></nav>
+</div>
+
+<div class="container">
+    <h1>Create Post</h1>
+    <form th:include="fragments :: form" action="#" th:action="@{/posts/create}" method="post" th:object="${post}"></form>
+</div>
 
 <script th:include="fragments :: scripts"></script>
 </body>
