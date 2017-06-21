@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <div th:each="post : ${allPosts}">
+    <div th:each="post : ${allPosts}" class="container">
         <span th:text="${post.title}" />
         <span th:text="${post.body}" />
     </div>
