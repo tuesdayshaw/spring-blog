@@ -54,15 +54,15 @@ public class PostsController {
     public String savePost(Model model, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
         Post post = new Post(title, body);
         model.addAttribute("post", post);
-        postsDao.save(post);
+        postSvc.save(post);
         return "posts/create";
     }
 
     @GetMapping("/posts/{id}/edit")
     public String editPost(@PathVariable long id, Model model){
-        Post post = postsDao.findOne(id);
+        Post post = postSvc.findOne(id);
         model.addAttribute("post", post);
-        postsDao.save(post);
+        postSvc.save(post);
         return "posts/edit";
     }
 }
