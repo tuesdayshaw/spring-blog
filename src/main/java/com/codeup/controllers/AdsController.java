@@ -30,6 +30,8 @@ public class AdsController {
          return "ads/index";
      }
 
+     //ToDo: create form binding for Ads along with Instructor and on Posts for exercises
+
      @GetMapping("/ads/{id}")
      @ResponseBody
      public String show(@PathVariable long id) {
