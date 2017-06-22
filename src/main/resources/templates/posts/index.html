@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="fragments :: head('All Blog Posts')">
     <meta charset="UTF-8" />
-    <title>All Blog Posts</title>
 </head>
 <body>
 
-    <div th:each="post : ${allPosts}">
-        <span th:text="${post.title}" />
-        <span th:text="${post.body}" />
-    </div>
+<div class="container">
+    <nav th:include="fragments :: navbar"></nav>
+</div>
 
+    <h1>Posts Index Page</h1>
+    <div>
+        <div th:each="post : ${allPosts}" class="container">
+            <h2>Title: <span th:text="${post.title}"/></h2>
+            <p>Body: <span th:text="${post.body}"/></p>
+        <div class="container">
+            <a th:href="${'/posts/' + post.id + '/edit'}" class="btn btn-default">Edit</a>
+        </div>
+        <div class="container">
+            <a th:href="${'/posts/delete'}" class="btn btn-warning">Delete</a>
+        </div>
+        </div>
+    </div>
 </body>
 </html>

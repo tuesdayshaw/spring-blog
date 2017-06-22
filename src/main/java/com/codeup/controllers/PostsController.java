@@ -1,6 +1,9 @@
 package com.codeup.controllers;
 
 import com.codeup.models.Post;
+import com.codeup.models.User;
+import com.codeup.repositories.PostsRepository;
+import com.codeup.repositories.UsersRepository;
 import com.codeup.svcs.PostSvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,29 +21,26 @@ import java.util.List;
 public class PostsController {
 
     private PostSvc postSvc;
+    private UsersRepository userSvc;
 
     @Autowired
-    public PostsController(PostSvc postSvc) {
+    public PostsController(UsersRepository userSvc, PostSvc postSvc) {
+        this.userSvc = userSvc;
         this.postSvc = postSvc;
     }
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
-
-        List<Post> allPosts = postSvc.findAll();
+        Iterable<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
-
         return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String viewIndividualPost(@PathVariable Long id, Model model) {
-
         Post post = postSvc.findOne(id);
-
         model.addAttribute("post", post);
         model.addAttribute("id", id);
-
         return "posts/show";
     }
 
@@ -51,18 +51,31 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String savePost(Model model, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
-        Post post = new Post(title, body);
+    public String savePost(@ModelAttribute Post post, Model model) {
+        User user = userSvc.findOne((long) 1);
+        post.setOwner(user);
         model.addAttribute("post", post);
         postSvc.save(post);
         return "posts/create";
     }
 
     @GetMapping("/posts/{id}/edit")
-    public String editPost(@PathVariable long id, Model model){
+    public String showEditForm(@PathVariable long id, Model model) {
         Post post = postSvc.findOne(id);
         model.addAttribute("post", post);
-        postSvc.save(post);
         return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(@ModelAttribute Post post){
+        postSvc.save(post);
+        return "redirect:/posts/" + post.getId();
+    }
+
+    @PostMapping("/posts/delete")
+    public String deletePost(@ModelAttribute Post post, Model model) {
+        postSvc.delete(post.getId());
+        model.addAttribute("msg", "Your post was deleted correctly");
+        return "posts/delete";
     }
 }

@@ -5,7 +5,13 @@
     <title>Single Blog Post</title>
 </head>
 <body>
-    <span th:text="${post.title}"/>
-    <span th:text="${post.body}"/>
+<div class="container">
+    <nav th:include="fragments :: navbar"></nav>
+</div>
+<div class="container">
+    <h1>Title: <span th:text="${post.title}"/></h1>
+    <p>Body: <span th:text="${post.body}"/></p>
+    <p>Email: <span th:text="${post.owner.email}"/></p>
+</div>
 </body>
 </html>
