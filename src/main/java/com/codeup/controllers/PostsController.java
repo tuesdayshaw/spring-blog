@@ -76,10 +76,7 @@ public class PostsController {
 
     @GetMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id) {
-        long temp = id;
         Post post = postSvc.findOne(id);
-        String title = post.getTitle();
-        long postId = post.getId();
         postSvc.delete(post);
         return "posts/delete";
     }
