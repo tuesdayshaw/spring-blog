@@ -10,10 +10,6 @@
 <h1>Edit Post</h1>
 <form th:include="fragments :: form" th:action="${'/posts/' + post.id + '/edit'}" method="post" th:object="${post}"></form>
 
-<!--<div class="container">-->
-    <!--<a th:href="@{'/posts/' + ${post.id} + '/delete'}" class="btn btn-warning">Delete</a>-->
-<!--</div>-->
-
 <script th:include="fragments :: scripts"></script>
 </body>
 </html>

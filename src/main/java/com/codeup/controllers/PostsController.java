@@ -52,7 +52,7 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String savePost(Model model, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body) {
+    public String savePost(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body, Model model) {
         Post post = new Post(title, body);
         model.addAttribute("post", post);
         postSvc.save(post);
@@ -67,17 +67,15 @@ public class PostsController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String editPost(Post post, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        post.setTitle(title);
-        post.setBody(body);
+    public String editPost(@ModelAttribute Post post){
         postSvc.save(post);
-        return "posts/edit";
+        return "redirect:/posts/" + post.getId();
     }
 
-    @GetMapping("/posts/{id}/delete")
-    public String deletePost(@PathVariable long id) {
-        Post post = postSvc.findOne(id);
-        postSvc.delete(post);
+    @PostMapping("/posts/delete")
+    public String deletePost(@ModelAttribute Post post, Model model) {
+        postSvc.delete(post.getId());
+        model.addAttribute("msg", "Your post was deleted correctly");
         return "posts/delete";
     }
 }

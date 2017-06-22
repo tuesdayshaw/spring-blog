@@ -9,10 +9,18 @@
     <nav th:include="fragments :: navbar"></nav>
 </div>
 
-    <div th:each="post : ${allPosts}" class="container">
-        <span th:text="${post.title}" />
-        <span th:text="${post.body}" />
+    <h1>Posts Index Page</h1>
+    <div>
+        <div th:each="post : ${allPosts}" class="container">
+            <h2>Title: <span th:text="${post.title}"/></h2>
+            <p>Body: <span th:text="${post.body}"/></p>
+        <div class="container">
+            <a th:href="${'/posts/' + post.id + '/edit'}" class="btn btn-default">Edit</a>
+        </div>
+        <div class="container">
+            <a th:href="${'/posts/delete'}" class="btn btn-warning">Delete</a>
+        </div>
+        </div>
     </div>
-
 </body>
 </html>
