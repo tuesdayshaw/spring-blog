@@ -60,10 +60,27 @@ public class PostsController {
     }
 
     @GetMapping("/posts/{id}/edit")
-    public String editPost(@PathVariable long id, Model model){
+    public String showEditForm(@PathVariable long id, Model model) {
         Post post = postSvc.findOne(id);
         model.addAttribute("post", post);
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(Post post, @RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
+        post.setTitle(title);
+        post.setBody(body);
         postSvc.save(post);
         return "posts/edit";
+    }
+
+    @GetMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+        long temp = id;
+        Post post = postSvc.findOne(id);
+        String title = post.getTitle();
+        long postId = post.getId();
+        postSvc.delete(post);
+        return "posts/delete";
     }
 }

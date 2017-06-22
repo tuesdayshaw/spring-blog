@@ -6,6 +6,9 @@
 </head>
 <body>
 <div class="container">
+    <nav th:include="fragments :: navbar"></nav>
+</div>
+<div class="container">
     <span th:text="${post.title}"/>
     <span th:text="${post.body}"/>
 </div>
