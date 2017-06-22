@@ -1,13 +1,13 @@
 package com.codeup.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by canidmars on 6/22/17.
  */
+
+@Entity
+@Table(name = "users")
 public class User {
 
     //ToDo: add properties, constructors, get/set
@@ -25,6 +25,8 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+
+
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
@@ -40,6 +42,8 @@ public class User {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+
+
 
     public User(String username, String email, String password) {
         this.username = username;

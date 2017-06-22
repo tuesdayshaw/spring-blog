@@ -15,28 +15,28 @@ import java.util.List;
 @Service("postSvc")
 public class PostSvc {
 
-    private PostsRepository postsDao;
+    private PostsRepository postSvc;
 
 
     @Autowired
-    public PostSvc(PostsRepository postsDao){
-        this.postsDao = postsDao;
+    public PostSvc(PostsRepository postSvc){
+        this.postSvc = postSvc;
     }
 
     public Iterable<Post> findAll(){
-        return postsDao.findAll();
+        return postSvc.findAll();
     }
 
     public Post findOne(long id){
-        return postsDao.findOne(id);
+        return postSvc.findOne(id);
     }
 
     public Post save(Post post){
-        postsDao.save(post);
+        postSvc.save(post);
         return post;
     }
 
-    public void deletePost(long id){
-        postsDao.delete(id);
+    public void delete(long id){
+        postSvc.delete(id);
     }
 }
