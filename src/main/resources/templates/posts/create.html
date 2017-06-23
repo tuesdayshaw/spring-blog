@@ -11,7 +11,7 @@
 
 <div class="container">
     <h1>Create Post</h1>
-    <form th:include="fragments :: form" action="#" th:action="@{/posts/create}" method="post" th:object="${post}"></form>
+    <form th:include="fragments :: posts-form" action="#" th:action="@{/posts/create}" method="post" th:object="${post}"></form>
 </div>
 
 <script th:include="fragments :: scripts"></script>
