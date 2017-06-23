@@ -1,52 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
+<!--// Head Fragment to use across pages-->
+
 <head th:fragment="head(title)">
     <meta charset="UTF-8" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
     <title th:text="${title}">Fragments</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
+    <link href="css/main.css" rel="stylesheet" />
 </head>
 
 <body>
 
+<!--// Navbar Fragment to use across pages-->
 
-<nav th:fragment="navbar" class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">CodeUp</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Posts <span class="sr-only">(current)</span></a></li>
-            </ul>
-            <!--<form class="navbar-form navbar-left">-->
-                <!--<div class="form-group">-->
-                    <!--<input type="text" class="form-control" placeholder="Search"/>-->
-                <!--</div>-->
-                <!--<button type="submit" class="btn btn-default">Submit</button>-->
-            <!--</form>-->
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+<nav class="nav" th:fragment="navbar">
+    <div class="nav-content">Post All About It</div>
+    <div class="nav-content">
+        <input type="text" placeholder="Search" />
+        <button type="submit">Search</button>
+    </div>
+    <div class="nav-content">Posts</div>
+    <div class="nav-content">Login</div>
 </nav>
 
 
-<!--// Forms Fragment to use across pages-->
+<!--// Forms Fragment to use across (create, edit) pages-->
 
-<form th:fragment="form" action="#" method="post" th:object="${post}">
+<form th:fragment="posts-form" action="#" method="post" th:object="${post}">
     <div class="form-group">
         <label>Title</label>
         <input type="text" name="title" id="title" class="form-control" th:field="*{title}"/>
@@ -58,13 +40,12 @@
     <button class="btn btn-default">Save</button>
 </form>
 
-
+<!--// Scripts Fragment to use across pages-->
 
 <div th:fragment="scripts">
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
 </div>
 
 </body>
-
 </html>

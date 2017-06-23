@@ -8,7 +8,7 @@
     <nav th:include="fragments :: navbar"></nav>
 </div>
 <h1>Edit Post</h1>
-<form th:include="fragments :: form" th:action="${'/posts/' + post.id + '/edit'}" method="post" th:object="${post}"></form>
+<form th:include="fragments :: posts-form" th:action="${'/posts/' + post.id + '/edit'}" method="post" th:object="${post}"></form>
 
 <script th:include="fragments :: scripts"></script>
 </body>

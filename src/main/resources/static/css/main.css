@@ -1,0 +1,22 @@
+
+body {
+    /*display: flex;*/
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    height: 3vh;
+    width: 100%;
+    max-width: 980px;
+}
+
+.nav-content {
+    align-self: center;
+    width: 25%;
+    height: inherit;
+    margin: auto;
+}
