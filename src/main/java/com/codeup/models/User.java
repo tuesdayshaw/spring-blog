@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    //ToDo: add properties, constructors, get/set
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,12 +44,26 @@ public class User {
 
 
 
-    public User(String username, String email, String password) {
+    public User(long id, String username, String email, String password) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
     public User() {
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User(User user) {
+        id = user.id;
+        email = user.email;
+        username = user.username;
+        password = user.password;
     }
 }

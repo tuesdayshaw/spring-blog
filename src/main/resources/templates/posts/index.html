@@ -2,25 +2,194 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments :: head('All Blog Posts')">
     <meta charset="UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Caveat+Brush|Covered+By+Your+Grace|Frijole|Shadows+Into+Light+Two" rel="stylesheet" />
+
+    <style>
+        /* CSS Reset */
+        body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
+
+        #index-grid {
+            display: grid;
+            grid: "nav"
+                  "h1"
+                  "posts"
+                  "footer";
+            grid-template-rows: 1fr .5fr calc(60%) 2fr;
+            background-color: ghostwhite;
+        }
+
+        .nav {
+            grid-row: nav;
+            display: inline-grid;
+            grid-template-columns: 3fr 1fr .5fr .5fr;
+
+        }
+
+        .nav-content {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            color: #4D3C35;
+        }
+
+        #woofbook {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-left: 1em;
+            font-size: 4em;
+            color: #4D3C35;
+            font-family: 'Frijole', cursive;
+        }
+
+        #search {
+            width: 80%;
+            height: 1em;
+            font-size: inherit;
+            font-family: 'Boogaloo', cursive;
+        }
+
+        .button {
+            border: 1px solid olivedrab;
+            height: 2em;
+            font-size: 1em;
+            background-color: #4D3C35;
+            color: ghostwhite;
+            font-family: 'Boogaloo', cursive;
+        }
+
+        .links {
+            font-size: 2em;
+            font-family: 'Boogaloo', cursive;
+        }
+
+        #content-header {
+            grid-row: h1;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            font-family: 'Boogaloo', cursive;
+            font-size: 2em;
+
+        }
+
+        #index-posts-flexbox {
+            grid-row: posts;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            align-content: center;
+            padding: 2em;
+        }
+
+        .post-container {
+            display: grid;
+            grid: "title"
+                  "body"
+                  "edit"
+                  "delete";
+            grid-template-rows: 1fr auto .5fr .5fr;
+            justify-content: center;
+            align-content: center;
+            border: 1px solid #4D3C35;
+            background-color: yellowgreen;
+            font-family: 'Boogaloo', cursive;
+            width: calc(30%);
+        }
+
+        #post-title {
+            grid-row: title;
+        }
+
+        #post-body {
+            grid-row: body;
+        }
+
+        #edit {
+            grid-row: edit;
+        }
+
+        #delete {
+            grid-row: delete;
+        }
+
+        #post-title, #post-body, #edit, #delete {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #footer {
+            grid-row: footer;
+            display: inline-grid;
+            grid-template-columns: 1fr 1fr 2fr;
+        }
+
+        #footer-icons, #footer-links, #copyright {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 1em;
+            font-family: 'Boogaloo', cursive;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4D3C35;
+        }
+
+        a:hover {
+            color: olivedrab;
+        }
+
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <nav th:include="fragments :: navbar"></nav>
-</div>
+<div id="index-grid">
 
-    <h1>Posts Index Page</h1>
-    <div>
-        <div th:each="post : ${allPosts}" class="container">
-            <h2>Title: <span th:text="${post.title}"/></h2>
-            <p>Body: <span th:text="${post.body}"/></p>
-        <div class="container">
-            <a th:href="${'/posts/' + post.id + '/edit'}" class="btn btn-default">Edit</a>
-        </div>
-        <div class="container">
-            <a th:href="${'/posts/delete'}" class="btn btn-warning">Delete</a>
-        </div>
+    <nav class="nav" th:fragment="navbar">
+        <h1 id="woofbook">WoofBook</h1>
+        <span class="nav-content">
+        <input id="search" type="text" placeholder="Search"/>
+        <input class="button" type="submit" value="Search"/>
+    </span>
+        <span class="nav-content links">Woofs</span>
+        <span class="nav-content links">Login</span>
+    </nav>
+
+    <h1 id="content-header">Current Woofs</h1>
+
+    <div id="index-posts-flexbox">
+        <div th:each="post : ${allPosts}" class="post-container">
+            <h2 id="post-title">Title: <span th:text="${post.title}"/></h2>
+            <p id="post-body">Body: <span th:text="${post.body}"/></p>
+            <div id="edit">
+                <a th:href="${'/posts/' + post.id + '/edit'}">EDIT</a>
+            </div>
+            <div id="delete">
+                <a th:href="${'/posts/delete'}">DELETE</a>
+            </div>
         </div>
     </div>
+
+    <footer id="footer">
+        <div id="copyright">Copyright DoggyBloggy 2017</div>
+        <div id="footer-links">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div id="footer-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+</div>
+
 </body>
 </html>
