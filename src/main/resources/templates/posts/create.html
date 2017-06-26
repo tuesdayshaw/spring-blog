@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="fragments :: head('Create Blog')">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
     <meta charset="UTF-8" />
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Caveat+Brush|Covered+By+Your+Grace|Frijole|Shadows+Into+Light+Two" rel="stylesheet" />
     <style>
@@ -233,11 +235,13 @@
         <form  id="post-form" th:fragment="posts-form" action="#" method="post" th:action="@{/posts/create}" th:object="${post}">
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" name="title" id="title" class="form-control" th:field="*{title}"/>
+                <input type="text" name="title" id="title" class="form-control" th:field="*{title}" />
+                <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
             </div>
             <div class="form-group">
                 <label>Body</label>
-                <input type="text" name="body" id="body" class="form-control" th:field="*{body}"/>
+                <input type="text" name="body" id="body" class="form-control" th:field="*{body}" />
+                <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
             </div>
             <button class="">Save</button>
         </form>
