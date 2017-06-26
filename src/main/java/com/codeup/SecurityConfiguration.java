@@ -35,31 +35,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/me") // user's home page, it can be any URL
+                .defaultSuccessUrl("/posts") // user's home page, it can be any URL
                 .permitAll() // Anyone can go to the login page
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/logout", "/posts") // anyone can see the home and logout page
+                .antMatchers("/", "/logout") // anyone can see the home and logout page
                 .permitAll()
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 .and()
                 .authorizeRequests()
-                .antMatchers("/posts/create", "/posts/?/edit", "/posts/?") // only authenticated users can create ads
+                .antMatchers("/posts/create", "/posts/?/edit") // only authenticated users can create ads
                 .authenticated()
         ;
     }
 
-
-    protected void configure(AuthenticationManagerBuilder auth, HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetails).passwordEncoder(passwordEncoder());
-
-        http
-                .authorizeRequests()
-                .antMatchers("/posts/create") // only admin users can create ads
-                .hasAnyAuthority("ADMIN", "USER")
-        ;
     }
 
 }
