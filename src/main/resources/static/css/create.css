@@ -1,0 +1,130 @@
+body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
+
+#create-grid {
+    display: grid;
+    grid: "nav"
+    "create"
+    "footer";
+    grid-template-rows: 1fr 2.8fr 1fr;
+    background-color: ghostwhite;
+}
+
+#create-post-form {
+    grid-row: create;
+    display: inline-grid;
+    grid: "a1 b1 a2"
+    "b2 c b3"
+    "a3 b4 a4";
+    grid-template-rows: 1fr 20vw 1fr;
+    grid-template-columns: 1fr 40vw 1fr;
+}
+
+#a1 {
+    grid-area: a1;
+    grid-row: 1;
+    grid-column: 1;
+}
+
+#a2 {
+    grid-area: a2;
+    grid-row: 1;
+    grid-column: 3;
+}
+
+#a3 {
+    grid-area: a3;
+    grid-row: 3;
+    grid-column: 1;
+}
+
+#a4 {
+    grid-area: a4;
+    grid-row: 3;
+    grid-column: 3;
+}
+
+#b2 {
+    grid-area: b2;
+    grid-row: 2;
+    grid-column: 1;
+}
+#b3 {
+    grid-area: b3;
+    grid-row: 2;
+    grid-column: 3;
+}
+#b4 {
+    grid-area: b4;
+    grid-row: 3;
+    grid-column: 2;
+}
+
+#a1, #a2, #a3, #a4 {
+    background-color: ghostwhite;
+}
+
+#create-header, #b4, #post-form {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: yellowgreen;
+}
+
+#b4 {
+    border-bottom: 1px solid black;
+    background-image: url("http://www.clker.com/cliparts/M/O/I/E/7/P/dog-bone-outline-hi.png");
+    background-size: 20%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1em;
+
+}
+
+#b2, #b3 {
+    background-color: #4D3C35;
+}
+
+#create-header {
+    grid-area: b1;
+    grid-row: 1;
+    grid-column: 2;
+    font-size: 3em;
+    font-family: 'Boogaloo', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid black;
+    margin: 0;
+
+}
+
+#post-form {
+    grid-area: c;
+    grid-row: 2;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-family: 'Boogaloo', cursive;
+    background-color: yellowgreen;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title, #body {
+    width: 80%;
+    font-size: 1em;
+    font-family: 'Boogaloo', cursive;
+}
+
+#body {
+    height: 4em;
+}
+
+

@@ -1,0 +1,23 @@
+#footer {
+    grid-row: footer;
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+#footer-icons, #footer-links, #copyright {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1em;
+    font-family: 'Boogaloo', cursive;
+}
+
+a {
+    text-decoration: none;
+    color: #4D3C35;
+}
+
+a:hover {
+    color: olivedrab;
+}

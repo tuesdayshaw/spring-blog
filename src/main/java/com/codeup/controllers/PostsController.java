@@ -5,12 +5,15 @@ import com.codeup.models.User;
 import com.codeup.repositories.PostsRepository;
 import com.codeup.repositories.UsersRepository;
 import com.codeup.svcs.PostSvc;
+import com.codeup.svcs.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +35,11 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
+        Boolean isUserLoggedIn = (Boolean) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Iterable<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
+        model.addAttribute("userLoggedIn", isUserLoggedIn);
         return "posts/index";
     }
 
@@ -52,12 +58,18 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String savePost(@ModelAttribute Post post, Model model) {
+    public String savePost(@Valid Post post, Errors validation, Model model) {
+        if (validation.hasErrors()) {
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", post);
+            return "posts/create";
+        }
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
         model.addAttribute("post", post);
         postSvc.save(post);
-        return "posts/create";
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
