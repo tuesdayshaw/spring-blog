@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by canidmars on 6/22/17.
@@ -29,15 +30,15 @@ public class User {
     @JsonIgnore
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "owner")
     @JsonBackReference
-    private Iterable<Post> posts;
+    private List<Post> posts;
 
 
 
-    public Iterable<Post> getPosts() { return posts; }
+    public List<Post> getPosts() { return posts; }
 
-    public void setPosts(Iterable<Post> posts) { this.posts = posts; }
+    public void setPosts(List<Post> posts) { this.posts = posts; }
 
     public long getId() { return id; }
 

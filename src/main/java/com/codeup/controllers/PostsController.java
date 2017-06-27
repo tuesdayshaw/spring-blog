@@ -40,6 +40,16 @@ public class PostsController {
         return "posts/index";
     }
 
+    @GetMapping("/posts.json")
+    public @ResponseBody Iterable<Post> viewAllPostsInJSONFormat() {
+        return postSvc.findAll();
+    }
+
+    @GetMapping("/posts/ajax")
+    public String viewPostsAjax(){
+        return "posts/json";
+    }
+
     @GetMapping("/posts/{id}")
     public String viewIndividualPost(@PathVariable Long id, Model model) {
         Post post = postSvc.findOne(id);
