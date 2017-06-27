@@ -12,6 +12,12 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
     <link href="/css/navbar.css" rel="stylesheet" />
     <link href="/css/footer.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/register.css" rel="stylesheet" />
+    <link href="/css/posts.css" rel="stylesheet" />
+    <link href="/css/show.css" rel="stylesheet" />
+    <link href="/css/create.css" rel="stylesheet" />
+    <link href="/css/edit.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -19,7 +25,7 @@
 <!--// Navbar Fragment to use across pages-->
 
 <nav class="nav" th:fragment="navbar">
-    <a href="/index" id="woofbook">WoofBook</a>
+    <a href="/" id="woofbook">WoofBook</a>
     <span id="nav-search">
         <input id="search" type="text" placeholder="Search"/>
         <input class="button" type="submit" value="Search"/>
@@ -27,7 +33,7 @@
     <span class="nav-content">
         <a sec:authorize="isAuthenticated()" href="/users/profile" id="user-name">Welcome, <span sec:authentication="name"></span></a>
         <a href="/posts" class="links">Woofs</a>
-        <a sec:authorize="isAuthenticated()" href="/posts" class="links">Create Woof</a>
+        <a sec:authorize="isAuthenticated()" href="/posts/create" class="links">Create Woof</a>
         <a sec:authorize="isAuthenticated()" href="/posts" class="links">Logout</a>
         <a sec:authorize="!isAuthenticated()" href="/login" class="links">Login</a>
         <a sec:authorize="!isAuthenticated()" href="/login" class="links">Register</a>
