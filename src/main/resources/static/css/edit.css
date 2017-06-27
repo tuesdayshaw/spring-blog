@@ -1,81 +1,16 @@
 body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
 
-#create-grid {
+#edit-grid {
     display: grid;
     grid: "nav"
-    "create"
+    "edit"
     "footer";
     grid-template-rows: 1fr 2.8fr 1fr;
     background-color: ghostwhite;
 }
 
-
-.nav {
-    grid-row: nav;
-    display: inline-grid;
-    grid-template-columns: 3fr 1fr 1fr;
-
-}
-
-.nav-content {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    color: #4D3C35;
-}
-
-#nav-search {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    width: 80%;
-}
-
-#woofbook {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-left: 1em;
-    font-size: 4em;
-    color: #4D3C35;
-    font-family: 'Frijole', cursive;
-}
-
-#search {
-    width: 80%;
-    height: 1em;
-    font-size: inherit;
-    font-family: 'Boogaloo', cursive;
-}
-
-#user-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Boogaloo', cursive;
-    color: #4D3C35;
-    font-size: 2em;
-}
-
-.button {
-    border: 1px solid olivedrab;
-    height: 2em;
-    font-size: 1em;
-    background-color: #4D3C35;
-    color: ghostwhite;
-    font-family: 'Boogaloo', cursive;
-}
-
-.links {
-    font-size: 2em;
-    font-family: 'Boogaloo', cursive;
-}
-
-#create-post-form {
-    grid-row: create;
+#edit-post-form {
+    grid-row: edit;
     display: inline-grid;
     grid: "a1 b1 a2"
     "b2 c b3"
@@ -128,7 +63,7 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     background-color: ghostwhite;
 }
 
-#create-header, #b4, #post-form {
+#edit-header, #b4, #post-form {
     border-left: 1px solid black;
     border-right: 1px solid black;
     background-color: yellowgreen;
@@ -148,7 +83,7 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     background-color: #4D3C35;
 }
 
-#create-header {
+#edit-header {
     grid-area: b1;
     grid-row: 1;
     grid-column: 2;
@@ -192,26 +127,3 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     height: 4em;
 }
 
-#footer {
-    grid-row: footer;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 2fr;
-}
-
-#footer-icons, #footer-links, #copyright {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 1em;
-    font-family: 'Boogaloo', cursive;
-}
-
-a {
-    text-decoration: none;
-    color: #4D3C35;
-}
-
-a:hover {
-    color: olivedrab;
-}

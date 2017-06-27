@@ -35,11 +35,8 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
-        Boolean isUserLoggedIn = (Boolean) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         Iterable<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
-        model.addAttribute("userLoggedIn", isUserLoggedIn);
         return "posts/index";
     }
 
