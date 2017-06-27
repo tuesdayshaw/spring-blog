@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <!--// Head Fragment to use across pages-->
 
@@ -9,7 +10,8 @@
     <title th:text="${title}">Fragments</title>
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Caveat+Brush|Covered+By+Your+Grace|Frijole|Shadows+Into+Light+Two" rel="stylesheet" />
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
-    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/navbar.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -17,13 +19,19 @@
 <!--// Navbar Fragment to use across pages-->
 
 <nav class="nav" th:fragment="navbar">
-    <h1 class="nav-content">WoofBook</h1>
-    <span class="nav-content">
-        <input type="text" placeholder="Search" />
-        <button type="submit">Search</button>
+    <a href="/index" id="woofbook">WoofBook</a>
+    <span id="nav-search">
+        <input id="search" type="text" placeholder="Search"/>
+        <input class="button" type="submit" value="Search"/>
     </span>
-    <span class="nav-content">Woofs</span>
-    <span class="nav-content">Login</span>
+    <span class="nav-content">
+        <a sec:authorize="isAuthenticated()" href="/users/profile" id="user-name">Welcome, <span sec:authentication="name"></span></a>
+        <a href="/posts" class="links">Woofs</a>
+        <a sec:authorize="isAuthenticated()" href="/posts" class="links">Create Woof</a>
+        <a sec:authorize="isAuthenticated()" href="/posts" class="links">Logout</a>
+        <a sec:authorize="!isAuthenticated()" href="/login" class="links">Login</a>
+        <a sec:authorize="!isAuthenticated()" href="/login" class="links">Register</a>
+    </span>
 </nav>
 
 
@@ -33,13 +41,30 @@
     <div class="form-group">
         <label>Title</label>
         <input type="text" name="title" id="title" class="form-control" th:field="*{title}"/>
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
     </div>
     <div class="form-group">
         <label>Body</label>
         <input type="text" name="body" id="body" class="form-control" th:field="*{body}"/>
+        <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
     </div>
-    <button class="btn btn-default">Save</button>
+    <button class="button">Save</button>
 </form>
+
+<!--// Footer Fragment to use across pages-->
+
+<footer th:fragment="footer" id="footer">
+    <div id="copyright">Copyright DoggyBloggy 2017</div>
+    <div id="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="footer-icons">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+    </div>
+</footer>
 
 <!--// Scripts Fragment to use across pages-->
 

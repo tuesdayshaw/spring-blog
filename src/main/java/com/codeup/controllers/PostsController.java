@@ -5,6 +5,7 @@ import com.codeup.models.User;
 import com.codeup.repositories.PostsRepository;
 import com.codeup.repositories.UsersRepository;
 import com.codeup.svcs.PostSvc;
+import com.codeup.svcs.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -34,11 +35,11 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String viewAll(Model model) {
-        User userLoggedIn = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Boolean isUserLoggedIn = (Boolean) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Iterable<Post> allPosts = postSvc.findAll();
         model.addAttribute("allPosts", allPosts);
-        model.addAttribute("userLoggedIn", userLoggedIn);
+        model.addAttribute("userLoggedIn", isUserLoggedIn);
         return "posts/index";
     }
 
