@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title th:text="'Ooops, ' + ${error}"></title>
 </head>
-<body>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center">
 <th:block th:switch="${error}">
     <div th:case="'Not Found'">
         <h1>Page not found!!</h1>

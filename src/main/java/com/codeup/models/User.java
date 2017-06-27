@@ -1,5 +1,8 @@
 package com.codeup.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -19,12 +22,22 @@ public class User {
     private String username;
 
     @Column(nullable = false, unique = true)
+    @JsonIgnore
     private String email;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
+    private Iterable<Post> posts;
 
+
+
+    public Iterable<Post> getPosts() { return posts; }
+
+    public void setPosts(Iterable<Post> posts) { this.posts = posts; }
 
     public long getId() { return id; }
 
