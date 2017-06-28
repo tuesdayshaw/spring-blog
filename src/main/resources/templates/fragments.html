@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<!--// Head Fragment to use across pages-->
+
+<head th:fragment="head(title)">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <title th:text="${title}">Fragments</title>
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Caveat+Brush|Covered+By+Your+Grace|Frijole|Shadows+Into+Light+Two" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
+    <link href="/css/navbar.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/register.css" rel="stylesheet" />
+    <link href="/css/posts.css" rel="stylesheet" />
+    <link href="/css/show.css" rel="stylesheet" />
+    <link href="/css/create.css" rel="stylesheet" />
+    <link href="/css/edit.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<!--// Navbar Fragment to use across pages-->
+
+<nav class="nav" th:fragment="navbar">
+    <a href="/" id="woofbook">WoofBook</a>
+    <span id="nav-search">
+        <input id="search" type="text" placeholder="Search"/>
+        <input class="button" type="submit" value="Search"/>
+    </span>
+    <span class="nav-content">
+        <a sec:authorize="isAuthenticated()" href="/users/profile" id="user-name">Welcome, <span sec:authentication="name"></span></a>
+        <a href="/posts" class="links">Woofs</a>
+        <a sec:authorize="isAuthenticated()" href="/posts/create" class="links">Create Woof</a>
+        <a sec:authorize="isAuthenticated()" href="/posts" class="links">Logout</a>
+        <a sec:authorize="!isAuthenticated()" href="/login" class="links">Login</a>
+        <a sec:authorize="!isAuthenticated()" href="/login" class="links">Register</a>
+    </span>
+</nav>
+
+
+<!--// Forms Fragment to use across (create, edit) pages-->
+
+<form th:fragment="posts-form" action="#" method="post" th:object="${post}">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" id="title" class="form-control" th:field="*{title}"/>
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    </div>
+    <div class="form-group">
+        <label>Body</label>
+        <input type="text" name="body" id="body" class="form-control" th:field="*{body}"/>
+        <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}"></div>
+    </div>
+    <button class="button">Save</button>
+</form>
+
+<!--// Footer Fragment to use across pages-->
+
+<footer th:fragment="footer" id="footer">
+    <div id="copyright">Copyright DoggyBloggy 2017</div>
+    <div id="footer-links">
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </div>
+    <div id="footer-icons">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+    </div>
+</footer>
+
+<!--// Scripts Fragment to use across pages-->
+
+<div th:fragment="scripts">
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+</div>
+
+</body>
+</html>

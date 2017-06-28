@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head th:replace="fragments :: head('Create')">
+    <meta charset="UTF-8" />
+    <title>Create Woof</title>
+    <!--<link href="/css/create.css" rel="stylesheet" />-->
+</head>
+
+<body>
+<div id="create-grid">
+
+    <nav class="nav" th:replace="fragments :: navbar"></nav>
+
+    <div id="create-post-form">
+
+        <div id="a1"></div>
+        <h1 id="create-header">Create Woof</h1>
+        <div id="a2"></div>
+
+        <div id="b2"></div>
+        <div class="container">
+            <form th:include="fragments :: posts-form" action="#" th:action="@{/posts/create}" method="post" th:object="${post}"></form>
+        </div>
+        <div id="b3"></div>
+
+        <div id="a3"></div>
+        <div id="b4"></div>
+        <div id="a4"></div>
+    </div>
+
+    <footer id="footer">
+        <div id="copyright">Copyright DoggyBloggy 2017</div>
+        <div id="footer-links">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+        <div id="footer-icons">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
+
+</div>
+<script th:include="fragments :: scripts"></script>
+</body>
+</html>

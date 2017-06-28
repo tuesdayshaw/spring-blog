@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head(${post.title})">
+    <meta charset="UTF-8" />
+    <title>Your Woof</title>
+    <link href="/css/show.css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="show-grid">
+
+    <nav class="nav" th:replace="fragments :: navbar"></nav>
+
+    <div id="show-post-grid">
+        <div id="a1"></div>
+        <h1 id="b1">Title: <span th:text="${post.title}"/></h1>
+        <div id="a2"></div>
+
+        <div id="b2"></div>
+        <div id="show-post">
+            <p>Body: <span th:text="${post.body}"/></p>
+            <p>Email: <span th:text="${post.owner.email}"/></p>
+        </div>
+        <div id="b3"></div>
+
+        <div id="a3"></div>
+        <div id="b4"></div>
+        <div id="a4"></div>
+    </div>
+
+    <footer th:replace="fragments :: footer" id="footer"></footer>
+
+</div>
+<script th:include="fragments :: scripts"></script>
+</body>
+</html>
