@@ -7,13 +7,18 @@ import com.codeup.repositories.UsersRepository;
 import com.codeup.svcs.PostSvc;
 import com.codeup.svcs.UserDetailsLoader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +31,9 @@ public class PostsController {
 
     private PostSvc postSvc;
     private UsersRepository userSvc;
+
+    @Value("${file-upload-path}")
+    private String uploadPath;
 
     @Autowired
     public PostsController(UsersRepository userSvc, PostSvc postSvc) {
@@ -65,15 +73,27 @@ public class PostsController {
     }
 
     @PostMapping("/posts/create")
-    public String savePost(@Valid Post post, Errors validation, Model model) {
+    public String savePost(@Valid Post post, Errors validation, @RequestParam(name = "file") MultipartFile uploadedFile, Model model) {
         if (validation.hasErrors()) {
             model.addAttribute("errors", validation);
             model.addAttribute("post", post);
             return "posts/create";
         }
 
+        String filename = uploadedFile.getOriginalFilename();
+        String filepath = Paths.get(uploadPath, filename).toString();
+        File destinationFile = new File(filepath);
+        try {
+            uploadedFile.transferTo(destinationFile);
+//            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
+        post.setImageUrl(filename);
         model.addAttribute("post", post);
         postSvc.save(post);
         return "redirect:/posts";

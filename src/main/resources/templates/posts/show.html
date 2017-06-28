@@ -20,6 +20,12 @@
         <div id="show-post">
             <p>Body: <span th:text="${post.body}"/></p>
             <p>Email: <span th:text="${post.owner.email}"/></p>
+            <div id="edit">
+            <a th:href="${'/posts/' + post.id + '/edit'}">EDIT</a>
+            </div>
+            <div id="delete">
+            <a th:href="${'/posts/delete'}">DELETE</a>
+            </div>
         </div>
         <div id="b3"></div>
 

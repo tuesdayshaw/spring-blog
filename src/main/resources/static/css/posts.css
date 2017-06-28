@@ -71,7 +71,7 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     "h1"
     "posts"
     "footer";
-    grid-template-rows: 1fr .5fr calc(60%) 2fr;
+    grid-template-rows: 2fr .5fr auto 2fr;
     background-color: ghostwhite;
 }
 

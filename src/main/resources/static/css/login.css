@@ -1,18 +1,12 @@
 body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
 
-#login-grid {
-    display: grid;
-    grid: "nav"
-    "login-center-content"
-    "footer";
-    grid-template-rows: 1fr 4fr 1fr;
-    background-color: ghostwhite;
-}
+
+/*Header*/
 
 .nav {
     grid-row: nav;
     display: inline-grid;
-    grid-template-columns: 3fr 1fr .5fr .5fr;
+    grid-template-columns: 3fr 1fr 1fr;
 
 }
 
@@ -33,6 +27,40 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     font-size: 4em;
     color: #4D3C35;
     font-family: 'Frijole', cursive;
+}
+
+#username, #password, #search {
+    width: 80%;
+    height: 1em;
+    font-size: inherit;
+    font-family: 'Boogaloo', cursive;
+}
+
+.button {
+    border: 1px solid olivedrab;
+    height: 2em;
+    font-size: 1em;
+    background-color: #4D3C35;
+    color: ghostwhite;
+    font-family: 'Boogaloo', cursive;
+}
+
+.links {
+    font-size: 2em;
+    font-family: 'Boogaloo', cursive;
+}
+
+
+
+
+
+#login-grid {
+    display: grid;
+    grid: "nav"
+    "login-center-content"
+    "footer";
+    grid-template-rows: 2fr 4fr 1fr;
+    background-color: ghostwhite;
 }
 
 #login-center-content {
@@ -138,26 +166,14 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     align-items: center;
 }
 
-#username, #password, #search {
-    width: 80%;
-    height: 1em;
-    font-size: inherit;
-    font-family: 'Boogaloo', cursive;
-}
 
-.button {
-    border: 1px solid olivedrab;
-    height: 2em;
-    font-size: 1em;
-    background-color: #4D3C35;
-    color: ghostwhite;
-    font-family: 'Boogaloo', cursive;
-}
 
-.links {
-    font-size: 2em;
-    font-family: 'Boogaloo', cursive;
-}
+
+
+
+
+
+/*Footer*/
 
 #footer {
     grid-row: footer;
@@ -173,6 +189,10 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     font-size: 1em;
     font-family: 'Boogaloo', cursive;
 }
+
+
+
+/*All <a> elements*/
 
 a {
     text-decoration: none;

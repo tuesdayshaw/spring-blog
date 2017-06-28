@@ -5,7 +5,7 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     grid: "nav"
     "create"
     "footer";
-    grid-template-rows: 1fr 2.8fr 1fr;
+    grid-template-rows: 2fr 3fr 1fr;
     background-color: ghostwhite;
 }
 
