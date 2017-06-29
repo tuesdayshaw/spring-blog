@@ -30,6 +30,21 @@
             $(this).css('color', '#4D3C35');
         });
 
+    $('#edit-button').hover(function() {
+            $(this).css('color', 'olivedrab');
+            console.log("test")
+        },
+        function() {
+            $(this).css('color', '#4D3C35');
+        });
+
+    $('#delete-button').hover(function() {
+            $(this).css('color', 'olivedrab');
+            console.log("test")
+        },
+        function() {
+            $(this).css('color', '#4D3C35');
+        });
 
 })(jQuery);
 

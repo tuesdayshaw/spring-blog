@@ -6,7 +6,8 @@
 
 <head th:fragment="head(title)">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+
     <title th:text="${title}">Fragments</title>
     <link href="https://fonts.googleapis.com/css?family=Boogaloo|Caveat+Brush|Covered+By+Your+Grace|Frijole|Shadows+Into+Light+Two" rel="stylesheet" />
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />-->
@@ -18,7 +19,7 @@
 <!--// Navbar Fragment to use across pages-->
 
 <nav class="nav" th:fragment="navbar">
-    <a href="/posts/index" id="woofbook">WoofBook</a>
+    <a href="" id="woofbook">WoofBook</a>
     <span id="nav-search">
         <input id="search" type="text" placeholder="Search"/>
         <input class="button" type="submit" value="Search"/>

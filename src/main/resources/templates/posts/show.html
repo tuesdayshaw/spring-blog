@@ -13,13 +13,13 @@
 
     <div id="show-post-grid">
         <div id="a1"></div>
-        <h1 id="b1">Title: <span th:text="${post.title}"/></h1>
+        <h1 id="b1"><span th:text="${post.title}"/></h1>
         <div id="a2"></div>
 
         <div id="b2"></div>
         <div id="show-post">
-            <p>Body: <span th:text="${post.body}"/></p>
-            <p>Email: <span th:text="${post.owner.email}"/></p>
+            <p><span th:text="${post.body}"/></p>
+            <p>Woofer's Email: <span th:text="${post.owner.email}"/></p>
             <div th:if="${post.imageUrl}">
                 <img th:src="${'/uploads/' + post.imageUrl}" width="250px" height="250px" />
             </div>
