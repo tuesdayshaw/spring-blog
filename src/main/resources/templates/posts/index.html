@@ -2,8 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments :: head('Woofs')">
     <meta charset="UTF-8" />
-    <title>Log In</title>
-    <!--<link href="/css/posts.css" />-->
+    <title>Please Log In</title>
 </head>
 <body>
 
@@ -15,8 +14,8 @@
 
     <div id="index-posts-flexbox">
         <div th:each="post : ${allPosts}" class="post-container">
-            <h2 id="post-title">Title: <span th:text="${post.title}"/></h2>
-            <p id="post-body">Body: <span th:text="${post.body}"/></p>
+            <a th:href="@{/posts/show(post.id=${post.id})}" id="post-title"><span th:text="${post.title}"/></a>
+            <p id="post-body"><span th:text="${post.body}"/></p>
             <div th:if="${post.imageUrl}">
                 <img th:src="${'/uploads/' + post.imageUrl}" width="250px" height="250px" />
             </div>
@@ -26,6 +25,6 @@
     <footer th:replace="fragments :: footer" id="footer"></footer>
 
 </div>
-
+<div th:replace="fragments :: scripts"></div>
 </body>
 </html>

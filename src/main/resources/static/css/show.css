@@ -77,6 +77,16 @@ body { margin:0; padding:0; font-size:100%; line-height:1; display: grid }
     font-family: 'Boogaloo', cursive;
 }
 
+
+#show-grid {
+    display: grid;
+    grid: "nav"
+    "show"
+    "footer";
+    grid-template-rows: 2fr 3fr 1fr;
+    background-color: ghostwhite;
+}
+
 #show-post-grid {
     grid-row: show;
     display: inline-grid;

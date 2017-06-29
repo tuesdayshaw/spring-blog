@@ -21,4 +21,18 @@
         $posts.append(html);
     });
 
+
+    $('#logout-button').hover(function() {
+            $(this).css('color', 'olivedrab');
+            console.log("test")
+        },
+        function() {
+            $(this).css('color', '#4D3C35');
+        });
+
+
 })(jQuery);
+
+
+
+

@@ -58,11 +58,11 @@ public class PostsController {
         return "posts/json";
     }
 
-    @GetMapping("/posts/{id}")
-    public String viewIndividualPost(@PathVariable Long id, Model model) {
-        Post post = postSvc.findOne(id);
+    @GetMapping("/posts/show")
+    public String viewIndividualPost(@ModelAttribute Post post, Model model) {
+        post = postSvc.findOne(post.getId());
         model.addAttribute("post", post);
-        model.addAttribute("id", id);
+//        model.addAttribute("id", id);
         return "posts/show";
     }
 
@@ -116,6 +116,6 @@ public class PostsController {
     public String deletePost(@ModelAttribute Post post, Model model) {
         postSvc.delete(post.getId());
         model.addAttribute("msg", "Your post was deleted correctly");
-        return "posts/delete";
+        return "redirect:/posts/";
     }
 }

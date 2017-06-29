@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns: xmlns:>
 <head th:replace="fragments :: head(${post.title})">
     <meta charset="UTF-8" />
     <title>Your Woof</title>
@@ -20,11 +20,14 @@
         <div id="show-post">
             <p>Body: <span th:text="${post.body}"/></p>
             <p>Email: <span th:text="${post.owner.email}"/></p>
+            <div th:if="${post.imageUrl}">
+                <img th:src="${'/uploads/' + post.imageUrl}" width="250px" height="250px" />
+            </div>
             <div id="edit">
-            <a th:href="${'/posts/' + post.id + '/edit'}">EDIT</a>
+            <form th:href="${'/posts/' + post.id + '/edit'}"><button id="edit-button">Edit</button></form>
             </div>
             <div id="delete">
-            <a th:href="${'/posts/delete'}">DELETE</a>
+            <form th:action="${'/posts/delete'}" th:method="post"><button id="delete-button">Delete</button></form>
             </div>
         </div>
         <div id="b3"></div>
