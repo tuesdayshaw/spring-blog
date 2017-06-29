@@ -58,7 +58,7 @@ public class PostsController {
         return "posts/json";
     }
 
-    @GetMapping("/posts/show")
+    @GetMapping("/posts/{id}")
     public String viewIndividualPost(@ModelAttribute Post post, Model model) {
         post = postSvc.findOne(post.getId());
         model.addAttribute("post", post);
@@ -80,39 +80,44 @@ public class PostsController {
             return "posts/create";
         }
 
-        String filename = uploadedFile.getOriginalFilename();
-        String filepath = Paths.get(uploadPath, filename).toString();
-        File destinationFile = new File(filepath);
-        try {
-            uploadedFile.transferTo(destinationFile);
+        if (!uploadedFile.isEmpty()) {
+
+            String filename = uploadedFile.getOriginalFilename();
+            String filepath = Paths.get(uploadPath, filename).toString();
+            File destinationFile = new File(filepath);
+            try {
+                uploadedFile.transferTo(destinationFile);
 //            model.addAttribute("message", "File successfully uploaded!");
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("message", "Oops! Something went wrong! " + e);
+            }
+            post.setImageUrl(filename);
         }
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setOwner(user);
-        post.setImageUrl(filename);
         model.addAttribute("post", post);
         postSvc.save(post);
         return "redirect:/posts";
     }
 
     @GetMapping("/posts/{id}/edit")
-    public String showEditForm(@PathVariable long id, Model model) {
-        Post post = postSvc.findOne(id);
+    public String showEditForm(@ModelAttribute Post post, Model model) {
+        post = postSvc.findOne(post.getId());
         model.addAttribute("post", post);
         return "posts/edit";
     }
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(@ModelAttribute Post post){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setOwner(user);
         postSvc.save(post);
         return "redirect:/posts/" + post.getId();
     }
 
-    @PostMapping("/posts/delete")
+    @PostMapping("/posts/delete/{id}")
     public String deletePost(@ModelAttribute Post post, Model model) {
         postSvc.delete(post.getId());
         model.addAttribute("msg", "Your post was deleted correctly");

@@ -5,7 +5,7 @@
 (function ($) {
     "use strict";
 
-    var request = $.ajax({
+/*    var request = $.ajax({
         url: "/posts.json"
     });
 
@@ -19,7 +19,7 @@
         }
 
         $posts.append(html);
-    });
+    });*/
 
 
     $('#logout-button').hover(function() {
